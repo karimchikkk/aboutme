@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karim Dev | Разработка сайтов и Telegram-ботов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e14;
+            color: #f0f4fa;
+        }
+
+        .bg-card {
+            background: #121a24;
+        }
+
+        .border-card {
+            border-color: #2a3440;
+        }
+
+        .text-muted {
+            color: #b0c4db;
+        }
+
+        .text-accent {
+            color: #8b5cf6;
+        }
+
+        .hover-accent:hover {
+            color: #8b5cf6;
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .border-accent {
+            border-color: #8b5cf6;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa, #ffffff, #8b5cf6, #ffffff, #a78bfa, #8b5cf6);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease-in-out infinite; /* Увеличена длительность */
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-title {
+            padding-bottom: 0.4em;
+            line-height: 1.35;
+            display: inline-block;
+        }
+
+        .card-glow {
+            background: #121a24;
+            border: 1px solid rgba(139, 92, 246, 0.5); /* Постоянная видимая рамка */
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-4px);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 40px -12px rgba(139, 92, 246, 0.35), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(139, 92, 246, 0.15);
+            color: #8b5cf6;
+            font-size: 24px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-glow:hover .icon-box {
+            background: rgba(139, 92, 246, 0.25);
+            transform: scale(1.05);
+        }
+
+        .developer-card {
+            background: #1a2330;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            border: 2px solid #8b5cf6; /* Постоянная фиолетовая рамка */
+            text-align: center;
+            max-width: 280px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3), 0 0 15px rgba(139, 92, 246, 0.3);
+            position: relative;
+        }
+
+        /* Белый бегущий блик вокруг карточки */
+        .developer-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            padding: 2px;
+            background: linear-gradient(45deg, transparent 10%, rgba(255,255,255,0.95) 30%, transparent 50%);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: whiteShine 4s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes whiteShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .developer-card:hover {
+            border-color: #a78bfa; /* Светлее при наведении */
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.5), 0 0 30px rgba(139, 92, 246, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .developer-card .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+            font-size: 40px;
+            margin-bottom: 0.75rem;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .developer-card:hover .icon-box {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .video-wrapper,
+        .photo-wrapper,
+        .link-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #0f1620;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            max-width: 340px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.4); /* Постоянная рамка */
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
+        }
+
+        .video-wrapper:hover,
+        .photo-wrapper:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .video-wrapper video,
+        .photo-wrapper img {
+            width: 100%;
+            display: block;
+        }
+
+        .link-card {
+            background: #1a2330;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            transition: all 0.3s ease;
+            display: block;
+            text-decoration: none;
+        }
+
+        .link-card:hover {
+            border-color: #8b5cf6;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4), 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .link-card .icon-box {
+            font-size: 32px;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .link-card .title {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .link-card .sub {
+            font-size: 0.8rem;
+            color: #b0c4db;
+        }
+
+        .link-card .open-site {
+            margin-top: 0.75rem;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            background: rgba(139, 92, 246, 0.15);
+            color: #8b5cf6;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .open-site {
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        .service-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+            color: #b0c4db;
+            font-size: 0.9rem;
+        }
+
+        .service-list li i {
+            color: #8b5cf6;
+            width: 1.2rem;
+        }
+
+        .compact-card {
+            padding: 1rem 1.25rem;
+        }
+
+        .compact-card .icon-box {
+            width: 44px;
+            height: 44px;
+            font-size: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .bot-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .bot-block .bot-desc {
+            grid-column: 1;
+        }
+
+        .bot-block .bot-media {
+            grid-column: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .bot-block .bot-media .video-wrapper,
+        .bot-block .bot-media .photo-wrapper,
+        .bot-block .bot-media .link-card {
+            flex: 0 0 calc(50% - 0.5rem);
+            max-width: 100%;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .card-glow {
+                padding: 1.25rem;
+            }
+            .bot-block {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .bot-block .bot-desc,
+            .bot-block .bot-media {
+                grid-column: 1;
+            }
+            .bot-block .bot-media .video-wrapper,
+            .bot-block .bot-media .photo-wrapper,
+            .bot-block .bot-media .link-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            .developer-card {
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+            .developer-card .icon-box {
+                width: 64px;
+                height: 64px;
+                font-size: 32px;
+            }
+            .hero-title {
+                font-size: 2.75rem !important;
+                padding-bottom: 0.35em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.25rem !important;
+                padding-bottom: 0.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="w-full px-4 sm:px-6 lg:px-8 py-6">
+        <div class="bg-card rounded-[40px] p-6 md:p-10 lg:p-14 border border-card shadow-2xl">
+
+            <!-- Шапка -->
+            <header class="flex flex-wrap justify-between items-center gap-4 pb-6 border-b border-card">
+                <div class="text-2xl md:text-3xl font-extrabold text-white tracking-wide">
+                    Karim <span class="font-light text-[#6a7f94]">Dev</span>
+                </div>
+                <nav class="flex flex-wrap gap-4 text-sm md:text-base font-medium text-muted">
+                    <a href="#about" class="hover:text-accent transition">Обо мне</a>
+                    <a href="#services" class="hover:text-accent transition">Услуги</a>
+                    <a href="#works" class="hover:text-accent transition">Примеры</a>
+                    <a href="#contacts" class="hover:text-accent transition">Контакты</a>
+                </nav>
+            </header>
+
+            <!-- Герой -->
+            <section class="py-12 flex flex-col lg:flex-row items-center gap-10">
+                <div class="flex-1">
+                    <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl font-black gradient-text">
+                        Разработка сайтов и Telegram-ботов
+                    </h1>
+                    <p class="text-muted text-lg mt-4 max-w-xl">
+                        Создаю лендинги, сайты-визитки и ботов для бизнеса. Быстро, недорого, под ключ.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4">
+                        <a href="#works" class="btn-accent font-bold px-6 py-3 rounded-full text-base shadow-lg transition hover:scale-[1.02]">
+                            <i class="fas fa-rocket mr-2"></i> Посмотреть работы
+                        </a>
+                        <a href="#contacts" class="border border-accent text-accent font-bold px-6 py-3 rounded-full hover:bg-accent hover:text-white transition">
+                            <i class="fas fa-paper-plane mr-2"></i> Связаться
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center w-full lg:w-auto">
+                    <div class="developer-card">
+                        <div class="icon-box mx-auto">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="name text-white text-2xl font-black">Karim</div>
+                        <div class="title text-muted text-sm">Fullstack-разработчик</div>
+                        <div class="sub text-muted text-xs mt-1">Создаю сайты и ботов для бизнеса</div>
+                        <div class="mt-3 flex justify-center gap-4 text-xl text-accent">
+                            <i class="fas fa-bolt"></i>
+                            <i class="fas fa-target"></i>
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="stats text-muted text-xs border-t border-card pt-3 mt-3 flex justify-center gap-4">
+                            <span><i class="fas fa-check-circle text-accent mr-1"></i> 100+ часов</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Обо мне -->
+            <section id="about" class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Обо мне</h2>
+                <p class="text-muted text-lg mt-4 max-w-3xl">
+                    Меня зовут Карим, я разработчик из Минска. Специализируюсь на создании сайтов-лендингов и Telegram-ботов для малого бизнеса. Работаю на результат, ценю своё время и время клиента. Предлагаю честные цены и быструю обратную связь.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                    <div class="card-glow text-center">
+                        <div class="icon-box mx-auto"><i class="fas fa-globe"></i></div>
+                        <div class="text-xl font-bold text-white">Лендинги</div>
+                        <div class="text-muted text-sm">от 100 BYN</div>
+                    </div>
+                    <div class="card-glow text-center">
+                        <div class="icon-box mx-auto"><i class="fas fa-robot"></i></div>
+                        <div class="text-xl font-bold text-white">Telegram-боты</div>
+                        <div class="text-muted text-sm">от 150 BYN</div>
+                    </div>
+                    <div class="card-glow text-center">
+                        <div class="icon-box mx-auto"><i class="fas fa-clock"></i></div>
+                        <div class="text-xl font-bold text-white">Сроки</div>
+                        <div class="text-muted text-sm">1–3 дня</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Почему я -->
+            <section id="services" class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Почему я</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-bolt"></i></div>
+                        <h3 class="text-lg font-bold text-white">Быстро</h3>
+                        <p class="text-muted text-sm">Сайт готов за 1–2 дня</p>
+                    </div>
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-hand-holding-usd"></i></div>
+                        <h3 class="text-lg font-bold text-white">Дёшево</h3>
+                        <p class="text-muted text-sm">Цены ниже рынка</p>
+                    </div>
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-headset"></i></div>
+                        <h3 class="text-lg font-bold text-white">На связи</h3>
+                        <p class="text-muted text-sm">Правки и поддержка</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Технологии -->
+            <section class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Технологии</h2>
+                <div class="flex flex-wrap justify-center gap-3 mt-6">
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fab fa-html5 text-accent mr-2"></i>HTML</span>
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fab fa-css3-alt text-accent mr-2"></i>CSS</span>
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fab fa-js text-accent mr-2"></i>JavaScript</span>
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fab fa-python text-accent mr-2"></i>Python</span>
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fas fa-robot text-accent mr-2"></i>Telegram API</span>
+                    <span class="bg-[#1a2330] border border-card rounded-full px-4 py-2 text-sm font-medium text-white"><i class="fas fa-database text-accent mr-2"></i>SQLite</span>
+                </div>
+            </section>
+
+            <!-- Примеры работ -->
+            <section id="works" class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Примеры работ</h2>
+                
+                <!-- БЛОК 1: Telegram-бот -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-robot mr-2 text-accent"></i> Telegram-бот</h3>
+                    <div class="bot-block mt-3">
+                        <!-- Описание -->
+                        <div class="bot-desc card-glow compact-card">
+                            <div class="icon-box"><i class="fas fa-robot"></i></div>
+                            <h4 class="text-lg font-bold text-white">Бот для автоматизации общения</h4>
+                            <p class="text-muted text-sm mt-1">Готовый бот для Telegram, который помогает бизнесу быстро отвечать на частые вопросы, собирать заявки и показывать товары.</p>
+                            <ul class="service-list mt-2">
+                                <li><i class="fas fa-check-circle"></i> Приветствие и список команд</li>
+                                <li><i class="fas fa-check-circle"></i> Инлайн-кнопки для быстрых действий</li>
+                                <li><i class="fas fa-check-circle"></i> Сбор контактов и заявок</li>
+                                <li><i class="fas fa-check-circle"></i> Уведомления о новых заявках вам в чат</li>
+                                <li><i class="fas fa-check-circle"></i> Лёгкая настройка под ваш бизнес</li>
+                            </ul>
+                            <div class="mt-2 text-accent font-semibold text-sm">Цена: от 150 BYN</div>
+                        </div>
+                        <!-- Медиа справа: видео и фото -->
+                        <div class="bot-media">
+                            <div class="video-wrapper">
+                                <video controls preload="metadata">
+                                    <source src="images/videotgbot.MP4" type="video/mp4" />
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                            </div>
+                            <div class="photo-wrapper">
+                                <img src="images/tgboting.jpg" alt="Скриншот бота" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- БЛОК 2: Сайты-лендинги -->
+                <div class="mt-12">
+                    <h3 class="text-xl font-bold text-white"><i class="fas fa-globe mr-2 text-accent"></i> Сайты-лендинги</h3>
+                    <div class="bot-block mt-3">
+                        <!-- Описание -->
+                        <div class="bot-desc card-glow compact-card">
+                            <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                            <h4 class="text-lg font-bold text-white">Продающий лендинг для вашего бизнеса</h4>
+                            <p class="text-muted text-sm mt-1">Одностраничный сайт, который превращает посетителей в клиентов. Всё, что нужно для старта продаж.</p>
+                            <ul class="service-list mt-2">
+                                <li><i class="fas fa-check-circle"></i> Индивидуальный дизайн</li>
+                                <li><i class="fas fa-check-circle"></i> Адаптив под все устройства</li>
+                                <li><i class="fas fa-check-circle"></i> Форма заявки и кнопка связи</li>
+                                <li><i class="fas fa-check-circle"></i> Подключение домена (опционально)</li>
+                                <li><i class="fas fa-check-circle"></i> Правки и заливка на хостинг</li>
+                            </ul>
+                            <div class="mt-2 text-accent font-semibold text-sm">Цена: от 100 BYN</div>
+                        </div>
+                        <!-- Медиа справа: две карточки-ссылки на примеры -->
+                        <div class="bot-media">
+                            <a href="https://nextreyy.vercel.app/" target="_blank" class="link-card">
+                                <div class="icon-box"><i class="fas fa-store"></i></div>
+                                <div class="title">Nextreyy Store</div>
+                                <div class="sub">Лендинг для шопа выкупа из Китая</div>
+                                <span class="open-site">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Перейти на сайт
+                                </span>
+                            </a>
+                            <a href="https://bareboo.vercel.app/" target="_blank" class="link-card">
+                                <div class="icon-box"><i class="fas fa-tshirt"></i></div>
+                                <div class="title">Bareboo</div>
+                                <div class="sub">Лендинг для бренда одежды</div>
+                                <span class="open-site">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Перейти на сайт
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Процесс работы -->
+            <section class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Как мы работаем</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-comment"></i></div>
+                        <h3 class="text-lg font-bold text-white">1. Обсуждение</h3>
+                        <p class="text-muted text-sm">Вы рассказываете, что нужно</p>
+                    </div>
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-pencil-ruler"></i></div>
+                        <h3 class="text-lg font-bold text-white">2. Черновик</h3>
+                        <p class="text-muted text-sm">Я делаю макет за 1 день</p>
+                    </div>
+                    <div class="card-glow text-center compact-card">
+                        <div class="icon-box mx-auto"><i class="fas fa-rocket"></i></div>
+                        <h3 class="text-lg font-bold text-white">3. Запуск</h3>
+                        <p class="text-muted text-sm">Правки, заливка, вы довольны</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Контакты -->
+            <section id="contacts" class="mt-16">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text border-l-4 border-accent pl-4">Контакты</h2>
+                <div class="card-glow mt-6 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fab fa-telegram text-3xl text-accent"></i>
+                        <div>
+                            <div class="text-white font-semibold">Telegram (основной)</div>
+                            <a href="https://t.me/KarimChebaeyskiy" target="_blank" class="text-accent hover:underline">@KarimChebaeyskiy</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fab fa-telegram text-3xl text-accent"></i>
+                        <div>
+                            <div class="text-white font-semibold">Telegram (второй)</div>
+                            <a href="https://t.me/chaossssssssssssssss" target="_blank" class="text-accent hover:underline">@chaossssssssssssssss</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-3xl text-accent"></i>
+                        <div>
+                            <div class="text-white font-semibold">Email</div>
+                            <a href="mailto:chibakarim10@gmail.com" class="text-accent hover:underline">chibakarim10@gmail.com</a>
+                        </div>
+                    </div>
+                    <a href="https://t.me/KarimChebaeyskiy" target="_blank" class="btn-accent font-bold px-6 py-3 rounded-full text-base shadow-lg transition hover:scale-[1.02]">
+                        <i class="fab fa-telegram mr-2"></i> Написать
+                    </a>
+                </div>
+            </section>
+
+            <!-- Подвал -->
+            <footer class="mt-16 pt-6 border-t border-card flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted">
+                <div>© 2026 Karim Dev — разработка сайтов и ботов</div>
+                <div class="flex gap-6">
+                    <a href="https://t.me/KarimChebaeyskiy" target="_blank" class="hover:text-accent transition"><i class="fab fa-telegram mr-1"></i> Telegram</a>
+                    <a href="mailto:chibakarim10@gmail.com" class="hover:text-accent transition"><i class="fas fa-envelope mr-1"></i> Email</a>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+</body>
+</html>
